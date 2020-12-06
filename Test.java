@@ -1,13 +1,7 @@
 package opreation;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStream;
-
 public class Test {
 	static Student student0=new Student();
-	static Student student1=new Student(student0.name,student0.sex,student0.age,student0.stuNo);
 	static FileInAndOut file = new FileInAndOut();
 	public static void main(String[] args) {
 		
@@ -20,8 +14,7 @@ public class Test {
 		
 		String a=file.readFile();
 		String b = file.operationFile(a);
-//		System.out.println(b);
-		if(file.outFile(addNewInformation(student1)))
+		if(file.outFile(addNewInformation(student0)))
 		System.out.println("信息导入成功！");
 		if(file.outFile(b))
 			System.out.println("作业导入成功！");

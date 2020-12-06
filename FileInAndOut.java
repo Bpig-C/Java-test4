@@ -6,10 +6,11 @@ import java.util.Scanner;
 public class FileInAndOut {
 	int n;
 	public String operationFile(String longer) {
-		String l=null;
+		StringBuffer l=new StringBuffer(longer);
+
 		String s;
 	    char[] a;
-		for(int i = 0;i<longer.length();i=i+7) {
+		for(int i = 0;i<l.length();i=i+7) {
 			 a=new char[7];
 			 try {
 				 longer.getChars(i, i+7, a, 0);
@@ -17,21 +18,19 @@ public class FileInAndOut {
 		            System.out.println("´¥·¢Òì³£...");
 		        }
 			s = String.valueOf(a);
-			if(l==null) {
-				l=s;
-				}
-			else if(l!=null)
-				l=l+s;
+			StringBuffer t = new StringBuffer(s);
+			if(l!=null)
+				l=l.append(t);
 			if(((i+7)/7)%2==1) {
-				l=l+",";
+				l=l.append(",");
 				}
 			else if(((i+7)/7)%2==0) {
-                l=l+"¡£\n";
+				l=l.append("¡£\n");
 			}
 			
 		}
-		
-		return l;
+		String b=l.toString();
+		return b;
 	}
 	
 	public String readFile() {

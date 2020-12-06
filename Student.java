@@ -7,12 +7,7 @@ public class Student {
 	String sex;
 	int age;
 	String stuNo;
-	public Student(String name,String sex,int age,String stu) {
-	
-}
-	public Student() {
-		
-	}
+
 public void inputInformation() {
 	Scanner reader = new Scanner(System.in);
 	a:for(;;) {
