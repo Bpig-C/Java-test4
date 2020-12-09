@@ -37,6 +37,13 @@ Java课程作业项目仓库
 3.设计程序完成上述的业务逻辑处理，并且把“古诗处理后的输出”结果存储到学生基本信息所在的文本文件A中。
 
 ## 实验过程
+### 编程思路
+1.设计四个类：  
+Student类用于录入和存储学生信息  
+FileInAndOut类用于文件读取和写入，以及对文件内字符串的操作  
+JudgeException类用于异常处理  
+Test类用于运行程序
+
 **1.首先创建一个package：interfaceApplication。  
 2.在包中创建两个接口StudentManagement和TeacherManagement，分别设定博士研究生作为学生和助教的两类行为标准。 
 3.并在包中实例化一个类DoctoralCandidate来实现上述两个接口。实例化一个MoneyException异常类来进行对收税金的判断。实例化主类Test_JavaProgram对用户输入进行存储和操作。  
