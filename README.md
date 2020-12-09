@@ -38,18 +38,16 @@ Java课程作业项目仓库
 
 ## 实验过程
 ### 编程思路
-1.设计四个类：  
-Student类用于录入和存储学生信息  
-FileInAndOut类用于文件读取和写入，以及对文件内字符串的操作  
-JudgeException类用于异常处理  
-Test类用于运行程序
+**设计四个类：  
+Student类：通过交互式录入和存储学生信息  
+FileInAndOut类：用于文件读取和写入，以及对文件内字符串操作  
+JudgeException类：用于异常处理  
+Test类：调用各类方法用于运行程序**  
 
-**1.首先创建一个package：interfaceApplication。  
-2.在包中创建两个接口StudentManagement和TeacherManagement，分别设定博士研究生作为学生和助教的两类行为标准。 
-3.并在包中实例化一个类DoctoralCandidate来实现上述两个接口。实例化一个MoneyException异常类来进行对收税金的判断。实例化主类Test_JavaProgram对用户输入进行存储和操作。  
-4.StudentManagement类中：**  
-*(a)定义常量buzhu  
-(b)设计两个方法：缴纳学费和查询学费*  
+### 实现方法
+**1.Student类中：**  
+*(a)一个inputInformation方法：通过交互式存储学生信息  
+(b)两个异常处理方法：sexJudge(String sex)方法和ageJudge(int age)方法*  
 **5.TeacherManagement类中：**  
 *(a)定义常量sanxianyijin  
 (b)设计两个方法：查询工资和发放工资*  
