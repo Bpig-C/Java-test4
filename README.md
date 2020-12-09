@@ -61,80 +61,177 @@ Test类：调用各类方法用于运行程序**
 (c)然后通过readFile()、operationFile()、addNewInformation(student0)、outFile()以及FindSth()来实现字符串的读取操作录入和查询。    *  
 
 ## 核心方法  
-***1.revenue税收计算方法***
+***1.inputInformation()学生信息录入方法***
 ```
-public final static double giveRevenue(double salary,double tuition) {
-		tuition=tuition/6;                                                             
-		revenue=TeacherManagement.sanxianyijin+StudentManagement.buzhu-tuition; 
-		if(revenue<=5000.00) {                           
-			return revenue*0.03;
+public void inputInformation() {
+	Scanner reader = new Scanner(System.in);
+	a:for(;;) {
+		try {
+			System.out.println("请输入姓名");
+	        name=reader.nextLine();
+	        System.out.println("录入成功~");
+	        break a;
 		}
-		else if(revenue>5000.00 && revenue<=12000.00) {  
-			return (revenue-5000)*0.1+1500;
+		catch(Exception e) {
+			System.out.println("您输入的 “"+name+"” 格式不正确，请重新输入！");
 		}
-		else if(revenue>12000.00 && revenue<=25000.00) { 
-			return (revenue-12000)*0.2+2200;
+	}
+	b:for(;;) {
+	try{
+	System.out.println("请输入性别（中文）");
+	sex=reader.nextLine();
+	sexJudge(sex);
+	break b;
+	}
+	catch(JudgeException e) {
+		System.out.println(e.JudgeException(sex));
+	}
+	}
+	c:for(;;) {
+		try{
+			System.out.println("请输入年龄（15-75岁）");
+			age=reader.nextInt();
+		    ageJudge(age);
+		    break c;
 		}
-		else if(revenue>25000.00 && revenue<=35000.00) { 
-			return (revenue-25000)*0.25+4800;
+		catch(JudgeException e) {
+			System.out.println(e.JudgeException(age));
 		}
-		else if(revenue>35000.00 && revenue<=55000.00) { 
-			return (revenue-35000)*0.3+7300;
 		}
-		else if(revenue>55000.00 && revenue<=80000.00) { 
-			return (revenue-55000)*0.35+13300;
+	d:for(;;) {
+		try {
+			Scanner reader0 = new Scanner(System.in);
+			System.out.println("请输入学号");
+			stuNo=reader0.nextLine();
+	        System.out.println("录入成功~");
+	        break d;
 		}
-		else if(revenue>80000.00) {                      
-			return (revenue-80000)*0.45+22050;
+		catch(Exception e) {
+			System.out.println("您输入的“"+stuNo+"”格式不正确，请重新输入！");
 		}
-		return 0;
+	}
+	
+}
+``` 
+***2.operationFile字符串操作方法***
+```
+ public StringBuffer operationFile(String studentInformation,String longer) {
+		StringBuffer l=new StringBuffer(studentInformation);
+		String s;
+		int j=l.length();
+	    char[] a;
+		for(int i = 0;i<longer.length();i=i+7) {
+			 a=new char[7];
+			 try {
+				 longer.getChars(i, i+7, a, 0);
+		       } catch( Exception ex) {
+		            System.out.println("触发异常...");
+		        }
+			s = String.valueOf(a);
+			if(l!=null)
+				l.append(s);
+			if ((i + 7) % 7 == 0 && (i + 7) % 14 != 0)  {
+				l.append(",");
+				j++;
+				}
+			else if((i + 7) % 14 == 0) {
+				 l.append("。\n");
+	             j=j+2;
+			}
+			j=j+7;
+		}
+		l.deleteCharAt(j-1);
+		return l;
 	}
 ``` 
-***2.异常处理调用和返回方法***
+***3.readFile文件读取方法***
 ```
- public static void giveSalary(double d,double e) throws MoneyException{
-		if(d<0||e<0||d<e) {
-			throw new MoneyException(d,e);
+public String readFile() {
+		String original = null;
+		int n=-1;
+		char[] a = new char[100];//缓存，
+		try {
+			File file = new File("e:\\B.txt");
+			InputStream fli = new FileInputStream(file);
+			InputStreamReader in = new InputStreamReader(fli, "GBK");
+		while((n=in.read(a,0,100))!=-1) {
+		String s = new String(a,0,n);
+		this.n=n;
+		if(original!=null)
+		original = original+s;
+		else original=s;
 		}
-	}
-public MoneyException(double d,double e) {
-		message = "工资"+d+"是负数或少于学费，或学费"+e+"是负数，";
-	}
-public String warnMess() {
-		return message;
-	}
-``` 
-***3.学费缴费方法***
-```
-public void payTuition(double tuition) {
-		account=account-tuition;
-		System.out.println("操作成功！");
-		System.out.println("账户余额："+account);
+		
+        in.close();
+      	}
+		catch (IOException e) {
+			System.out.println("File read erroe:"+e);
+		}
+		return original;
 	}
 ``` 
-***4.学费查询方法***  
+***4.outFile文件输出方法***  
 ```
-public void searchTuition(double tuition) {
-		tuition=tuition-buzhu;
-		System.out.println("本学期学费："+tuition);
-		System.out.println("本学年学费："+2*tuition);
-	}
+public boolean outFile(String a) {
+		byte [] b = a.getBytes();
+		try {
+			File file = new File("e:\\A.txt");
+			OutputStream out = new FileOutputStream(file,true);
+			
+            out.write(b);
+            out.flush();
+            out.close();
+           
+		}
+		catch (IOException e) {
+			System.out.println("File read erroe:"+e);
+		}
+		 return true;
+		}
 ``` 
-***5.工资查询方法***
+***5.FindSth字词查询方法***
 ```
-public void searchSalary(double salary,double revenue) {                       
-		System.out.println("工资："+(salary-revenue));
-		System.out.println("年实际工资："+12*(salary-revenue));
-	}
+public void FindSth(String Str){
+		int m = 0;
+		StringBuffer s1=new StringBuffer(Str);
+		  a:
+		            while (true) {
+		                System.out.println("请输入序号:\n1:查询词句\n2:退出程序\n");
+		                try {
+		                Scanner reader0 = new Scanner(System.in);
+		                m = reader0.nextInt();
+		                }
+		                catch(Exception e) {
+		                	System.out.println("文本中没有该字符！");
+		                }
+		                switch (m) {
+		                    case 1:
+		                        System.out.println("输入你想要查询的字或词：\n");
+		                        Scanner reader1 = new Scanner(System.in);
+		                        String s2 = reader1.nextLine();
+		                        Pattern pattern = Pattern.compile(s2);
+		                        Matcher matcher = pattern.matcher(s1);
+		                        if (matcher.find()) {
+		                            int num = 1;
+		                            while (matcher.find()) {
+		                                num++;
+		                            }
+		                            System.out.println("“"+s2+"”出现的次数为:" + num);
+		                        } else {
+		                            System.out.println("文本中没有该字符");
+		                        }
+		                        break;
+		                    case 2:
+		                    	System.out.println("本次实验结束！");
+		                        break a;
+		                    default:
+		                        System.out.println("您输入的编号有误，请重新输入");
+		                }
+		            }
+
+		 }
 ``` 
-***6.工资发放方法***
-```
-public void giveSalary(double salary,double revenue) {
-		account=account+(salary-revenue);
-		System.out.println("操作成功！");
-		System.out.println("账户余额："+account);
-	}
-```
+
 ## 系统运行截图  
 ***Picture1：***  
 ![test31.png](![resultpicture.jpg](https://i.loli.net/2020/12/10/PhkOlbEYTfL2cCx.jpg))  
