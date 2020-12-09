@@ -48,84 +48,61 @@ Test类：调用各类方法用于运行程序**
 **1.Student类中：**  
 *(a)一个inputInformation方法：通过交互式存储学生信息  
 (b)两个异常处理方法：sexJudge(String sex)方法和ageJudge(int age)方法*  
-**5.TeacherManagement类中：**  
-*(a)定义常量sanxianyijin  
-(b)设计两个方法：查询工资和发放工资*  
-**6.DoctoralCandidate类中：**  
-*(a)定义基本信息变量  
-(b)实现两个接口四个方法*    
-**7.Test_JavaProgram类中：**  
-*(a)首先定义全局变量和录入数组  
-(b)设计三个循环：第一个循环依次录入个人信息，第二个循环判断录入工资和学费是否正确，第三个循环执行方法操作  
-(c)设计税收算法方法    
-(d)设计异常抛出方法*  
-**8.MoneyException类中：**  
-*(a)创建 MoneyException类为Exception类子类  
-(b)创建 warnMess方法用来返回错误提示*  
-**9.在实验类中创建DoctoralCandidate的对象Doctor，创建TeacherManagement的对象tea，创建StudentManagement的对象Stu,通过接口回调对实现接口的方法进行调用**
+**2.InformationOperation类中：**  
+*(a)定义InformationOperation()方法来操作文件中的字符串  
+(b)定义readFile()方法读取文件内容  
+(c)定义outFile(String a)方法输出文件内容，并返回成功与否  
+(d)定义FindSth(String Str)方法查找字符串中内容*  
+**3.JudgeException类中：**  
+*(a)定义JudgeException(String input) 方法和JudgeException(int input)方法分别判断年龄和性别的输入正确与否*     
+**4.Test类中：**  
+*(a)首先构造Student对象student0，InformationOperation的对象file  
+(b)通过student0调用inputInformation()方法来录入学生信息  
+(c)然后通过readFile()、operationFile()、addNewInformation(student0)、outFile()以及FindSth()来实现字符串的读取操作录入和查询。    *  
+
 ## 核心方法  
-***1.inputInformation()信息输入方法***
+***1.revenue税收计算方法***
 ```
-public void inputInformation() {
-	Scanner reader = new Scanner(System.in);
-	a:for(;;) {
-		try {
-			System.out.println("请输入姓名");
-	        name=reader.nextLine();
-	        System.out.println("录入成功~");
-	        break a;
+public final static double giveRevenue(double salary,double tuition) {
+		tuition=tuition/6;                                                             
+		revenue=TeacherManagement.sanxianyijin+StudentManagement.buzhu-tuition; 
+		if(revenue<=5000.00) {                           
+			return revenue*0.03;
 		}
-		catch(Exception e) {
-			System.out.println("您输入的 “"+name+"” 格式不正确，请重新输入！");
+		else if(revenue>5000.00 && revenue<=12000.00) {  
+			return (revenue-5000)*0.1+1500;
 		}
+		else if(revenue>12000.00 && revenue<=25000.00) { 
+			return (revenue-12000)*0.2+2200;
+		}
+		else if(revenue>25000.00 && revenue<=35000.00) { 
+			return (revenue-25000)*0.25+4800;
+		}
+		else if(revenue>35000.00 && revenue<=55000.00) { 
+			return (revenue-35000)*0.3+7300;
+		}
+		else if(revenue>55000.00 && revenue<=80000.00) { 
+			return (revenue-55000)*0.35+13300;
+		}
+		else if(revenue>80000.00) {                      
+			return (revenue-80000)*0.45+22050;
+		}
+		return 0;
 	}
-	b:for(;;) {
-	try{
-	System.out.println("请输入性别（中文）");
-	sex=reader.nextLine();
-	sexJudge(sex);
-	break b;
-	}
-	catch(JudgeException e) {
-		System.out.println(e.JudgeException(sex));
-	}
-	}
-	c:for(;;) {
-		try{
-			System.out.println("请输入年龄（15-75岁）");
-			age=reader.nextInt();
-		    ageJudge(age);
-		    break c;
-		}
-		catch(JudgeException e) {
-			System.out.println(e.JudgeException(age));
-		}
-		}
-	d:for(;;) {
-		try {
-			Scanner reader0 = new Scanner(System.in);
-			System.out.println("请输入学号");
-			stuNo=reader0.nextLine();
-	        System.out.println("录入成功~");
-	        break d;
-		}
-		catch(Exception e) {
-			System.out.println("您输入的“"+stuNo+"”格式不正确，请重新输入！");
-		}
-	}
-	
-}
 ``` 
-***2.Student类异常处理调用和返回方法***
+***2.异常处理调用和返回方法***
 ```
- public void sexJudge(String sex) throws JudgeException{
-	String x="男";
-	String y="女";
-	if (sex.equals(x)||sex.equals(y)){
-		System.out.println("录入成功~");
+ public static void giveSalary(double d,double e) throws MoneyException{
+		if(d<0||e<0||d<e) {
+			throw new MoneyException(d,e);
 		}
-	else throw new JudgeException();
-}
+	}
+public MoneyException(double d,double e) {
+		message = "工资"+d+"是负数或少于学费，或学费"+e+"是负数，";
+	}
+public String warnMess() {
+		return message;
+	}
 ``` 
 ***3.学费缴费方法***
 ```
@@ -160,7 +137,7 @@ public void giveSalary(double salary,double revenue) {
 ```
 ## 系统运行截图  
 ***Picture1：***  
-![test31.png](https://i.loli.net/2020/11/08/UDcZdStBwr8eQRL.png)  
+![test31.png](![resultpicture.jpg](https://i.loli.net/2020/12/10/PhkOlbEYTfL2cCx.jpg))  
 ***Picture2：***  
 ![test32.png](https://i.loli.net/2020/11/08/4KJczYklW9nDBeH.png)  
 ## 实验感想  
