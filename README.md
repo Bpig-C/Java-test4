@@ -234,9 +234,9 @@ public void FindSth(String Str){
 
 ## 系统运行截图  
 ***Picture1：***  
-![test31.png](![resultpicture.jpg](https://i.loli.net/2020/12/10/PhkOlbEYTfL2cCx.jpg))  
+![resultpicture.jpg](https://i.loli.net/2020/12/10/XZsN6OEe83Dc14q.jpg)  
 ***Picture2：***  
-![test32.png](https://i.loli.net/2020/11/08/4KJczYklW9nDBeH.png)  
+![txtpicture.jpg](https://i.loli.net/2020/12/10/sEH86ZFDOChPimv.jpg) 
 ## 实验感想  
 **通过本次实验，我学会了接口和方法的使用，回顾了数组的声明和使用：  
 首先创建接口来定义一些抽象方法，然后再通过实例化类来实现这些方法，在实验类中构造接口对象来实现接口回调，调用属于接口定义的原方法。  
