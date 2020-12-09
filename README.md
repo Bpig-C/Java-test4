@@ -64,48 +64,68 @@ Test类：调用各类方法用于运行程序**
 (b)创建 warnMess方法用来返回错误提示*  
 **9.在实验类中创建DoctoralCandidate的对象Doctor，创建TeacherManagement的对象tea，创建StudentManagement的对象Stu,通过接口回调对实现接口的方法进行调用**
 ## 核心方法  
-***1.revenue税收计算方法***
+***1.inputInformation()信息输入方法***
 ```
-public final static double giveRevenue(double salary,double tuition) {
-		tuition=tuition/6;                                                             
-		revenue=TeacherManagement.sanxianyijin+StudentManagement.buzhu-tuition; 
-		if(revenue<=5000.00) {                           
-			return revenue*0.03;
+public void inputInformation() {
+	Scanner reader = new Scanner(System.in);
+	a:for(;;) {
+		try {
+			System.out.println("请输入姓名");
+	        name=reader.nextLine();
+	        System.out.println("录入成功~");
+	        break a;
 		}
-		else if(revenue>5000.00 && revenue<=12000.00) {  
-			return (revenue-5000)*0.1+1500;
+		catch(Exception e) {
+			System.out.println("您输入的 “"+name+"” 格式不正确，请重新输入！");
 		}
-		else if(revenue>12000.00 && revenue<=25000.00) { 
-			return (revenue-12000)*0.2+2200;
-		}
-		else if(revenue>25000.00 && revenue<=35000.00) { 
-			return (revenue-25000)*0.25+4800;
-		}
-		else if(revenue>35000.00 && revenue<=55000.00) { 
-			return (revenue-35000)*0.3+7300;
-		}
-		else if(revenue>55000.00 && revenue<=80000.00) { 
-			return (revenue-55000)*0.35+13300;
-		}
-		else if(revenue>80000.00) {                      
-			return (revenue-80000)*0.45+22050;
-		}
-		return 0;
 	}
+	b:for(;;) {
+	try{
+	System.out.println("请输入性别（中文）");
+	sex=reader.nextLine();
+	sexJudge(sex);
+	break b;
+	}
+	catch(JudgeException e) {
+		System.out.println(e.JudgeException(sex));
+	}
+	}
+	c:for(;;) {
+		try{
+			System.out.println("请输入年龄（15-75岁）");
+			age=reader.nextInt();
+		    ageJudge(age);
+		    break c;
+		}
+		catch(JudgeException e) {
+			System.out.println(e.JudgeException(age));
+		}
+		}
+	d:for(;;) {
+		try {
+			Scanner reader0 = new Scanner(System.in);
+			System.out.println("请输入学号");
+			stuNo=reader0.nextLine();
+	        System.out.println("录入成功~");
+	        break d;
+		}
+		catch(Exception e) {
+			System.out.println("您输入的“"+stuNo+"”格式不正确，请重新输入！");
+		}
+	}
+	
+}
 ``` 
-***2.异常处理调用和返回方法***
+***2.Student类异常处理调用和返回方法***
 ```
- public static void giveSalary(double d,double e) throws MoneyException{
-		if(d<0||e<0||d<e) {
-			throw new MoneyException(d,e);
+ public void sexJudge(String sex) throws JudgeException{
+	String x="男";
+	String y="女";
+	if (sex.equals(x)||sex.equals(y)){
+		System.out.println("录入成功~");
 		}
-	}
-public MoneyException(double d,double e) {
-		message = "工资"+d+"是负数或少于学费，或学费"+e+"是负数，";
-	}
-public String warnMess() {
-		return message;
-	}
+	else throw new JudgeException();
+}
 ``` 
 ***3.学费缴费方法***
 ```
