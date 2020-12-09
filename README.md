@@ -231,6 +231,18 @@ public void FindSth(String Str){
 
 		 }
 ``` 
+***6.JudgeException异常处理方法***
+```
+public String JudgeException(String input) {
+		message = "您输入的“"+input+"”不正确，请输入正确性别！";
+		return message;
+	}
+	
+public String JudgeException(int input) {
+		message = "您输入的“"+input+"”不正确，请输入正确年龄！";
+		return message;
+	}
+``` 
 
 ## 系统运行截图  
 ***Picture1：***  
