@@ -58,7 +58,7 @@ Test类：调用各类方法用于运行程序**
 **4.Test类中：**  
 *(a)首先构造Student对象student0，InformationOperation的对象file  
 (b)通过student0调用inputInformation()方法来录入学生信息  
-(c)然后通过readFile()、operationFile()、addNewInformation(student0)、outFile()以及FindSth()来实现字符串的读取操作录入和查询。    *  
+(c)然后通过readFile()、operationFile()、addNewInformation(student0)、outFile()以及FindSth()来实现字符串的读取操作录入和查询。*  
 
 ## 核心方法  
 ***1.inputInformation()学生信息录入方法***
@@ -238,10 +238,9 @@ public void FindSth(String Str){
 ***Picture2：***  
 ![txtpicture.jpg](https://i.loli.net/2020/12/10/sEH86ZFDOChPimv.jpg) 
 ## 实验感想  
-**通过本次实验，我学会了接口和方法的使用，回顾了数组的声明和使用：  
-首先创建接口来定义一些抽象方法，然后再通过实例化类来实现这些方法，在实验类中构造接口对象来实现接口回调，调用属于接口定义的原方法。  
-实验中，通过数组存储数据，并对存储的数据进行计算和操作来实现实验目的。  
-最后，在输入数据的方法使用try-catch进行异常处理。
+**通过本次实验，我学会了文件操作方法以及字符串操作方法，回顾了交互式存储信息的方法：  
+在Student类中，通过scannner来录入键入信息，并存入字符串中，再在InformationOperation类中读取文件中字符串并存入新的StringBuffer里，最后写入文件。再通过单独的方法，来进行字符串的查询。  
+最开始我通过String类来操作字符串的，后来使用StringBuffer，感受两者的内存使用区别。
 本次实验不足：    
 1.异常处理的覆盖面不够全面  
-2.系统还差一些细节不够完善，会在日后维护中进行改进**
+2.系统还差一些细节不够完善，会在日后维护中进行改进~**
